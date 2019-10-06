@@ -16,6 +16,7 @@ function main(){
   var result=[]; //Excel出力用二次元配列
   var datas=[]; //二次元配列内の配列
   var rowlen=0; //カラム数
+  var collen=0; //行数
   
   /* 結果の要素数から、二次元配列を生成する */
   for(plan in list){
@@ -36,10 +37,11 @@ function main(){
     result.push(datas.slice(0));
   }
   
-  var collen=Object.keys(list).length;
+  collen=Object.keys(list).length+1;
+  rowlen=result[0].length;
+
   if(collen==0||rowlen==0){Logger.log("まだ回答が不十分！　どんまい！"); return;}
-  rowlen;
-  collen++;
+
   //Logger.log("行高さ"+rowlen+",列数"+collen);
   SpreadsheetApp.openById(configID).getSheetByName(resultSheet).getRange(1, 1, collen, rowlen).setValues(result);
 }
